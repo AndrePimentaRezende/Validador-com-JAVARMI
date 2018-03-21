@@ -94,11 +94,11 @@ public class Tela extends javax.swing.JFrame {
         });
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###")));
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setText("00.000.000");
+        jFormattedTextField1.setText("00.000.000-0");
         jFormattedTextField1.setEnabled(false);
 
         try {
@@ -206,8 +206,12 @@ public class Tela extends javax.swing.JFrame {
         }
         
         if(jRadioButton1.isSelected()){
-            //validar = jFormattedTextField1.getText();
-            //valido = c.rg(validar);
+            validar = jFormattedTextField1.getText();
+            try {
+                valido = calc.RG(validar);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if(jRadioButton2.isSelected()){
             validar = jFormattedTextField2.getText();
@@ -235,7 +239,7 @@ public class Tela extends javax.swing.JFrame {
             jLabel4.setVisible(true);
         }
         else{
-           jLabel4.setText("Não valido"); 
+           jLabel4.setText("Nao valido"); 
             jLabel4.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
